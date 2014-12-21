@@ -16,3 +16,19 @@ Slot::~Slot()
 
 }
 
+void Slot::addReceiver(Signal* sig)
+{
+    sig->addSlot(this);
+    m_connected++;
+}
+
+
+void Slot::removeReceiver()
+{
+    m_connected--;
+    if(m_connected<=0)
+    {
+        delete this;
+    }
+}
+

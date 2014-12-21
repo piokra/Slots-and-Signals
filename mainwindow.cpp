@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "piosignal.h"
+#include "piosignals.h"
 #include "pioslot.h"
 #include "piofunctionwrapper.h"
 
@@ -10,34 +11,45 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    Signal* b1 = new Signal(1);
-    Signal* b2 = new Signal(2);
-    Signal* b3 = new Signal(3);
-    Signal* b4 = new Signal(4);
+    Signal* b1;
+    Signal* b2;
+    Signal* b3;
+    Signal* b4;
+
+    Signals::createEmitterFromID(1,b1);
+    Signals::createEmitterFromID(2,b2);
+    Signals::createEmitterFromID(3,b3);
+    Signals::createEmitterFromID(4,b4);
 
     Slot* s1 = new Slot(functionwrapper(ui->pushButton,ui->pushButton->ToggleState2));
     Slot* s2 = new Slot(functionwrapper(ui->pushButton_2,ui->pushButton_2->ToggleState2));
     Slot* s3 = new Slot(functionwrapper(ui->pushButton_3,ui->pushButton_3->ToggleState2));
     Slot* s4 = new Slot(functionwrapper(ui->pushButton_4,ui->pushButton_4->ToggleState2));
 
-    b1->addSlot(s1);
-    b1->addSlot(s2);
-    b1->addSlot(s3);
-    b1->addSlot(s4);
+    s1->addReceiver(b1);
+    s1->addReceiver(b2);
+    s1->addReceiver(b3);
+    s1->addReceiver(b4);
 
-    b2->addSlot(s2);
-    b2->addSlot(s3);
-    b2->addSlot(s4);
 
-    b3->addSlot(s3);
-    b3->addSlot(s4);
 
-    b4->addSlot(s4);
+    s2->addReceiver(b2);
+    s2->addReceiver(b3);
+    s2->addReceiver(b4);
 
-    ui->pushButton->setSignal(b1);
+
+    s3->addReceiver(b3);
+    s3->addReceiver(b4);
+
+
+    s4->addReceiver(b4);
+
+    ui->pushButton->setSignal(b4);
     ui->pushButton_2->setSignal(b1);
     ui->pushButton_3->setSignal(b2);
     ui->pushButton_4->setSignal(b3);
+
+    b1->removeEmitter(ui->pushButton_2->m_signal);
 
 
 }

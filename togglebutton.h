@@ -15,6 +15,7 @@ public:
     ~ToggleButton();
     void setSignal(Signal* );
     void ToggleState2(int, void*);
+    Signal* m_signal;
 
 
 signals:
@@ -25,7 +26,7 @@ public slots:
     void emitsignal(int argc, void *argv);
 private:
     int state;
-    Signal* m_signal;
+
 };
 
 #endif // TOGGLEBUTTON_H
