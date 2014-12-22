@@ -21,10 +21,10 @@ MainWindow::MainWindow(QWidget *parent) :
     Signals::createEmitterFromID(3,b3);
     Signals::createEmitterFromID(4,b4);
 
-    Slot* s1 = new Slot(functionwrapper(ui->pushButton,ui->pushButton->ToggleState2));
-    Slot* s2 = new Slot(functionwrapper(ui->pushButton_2,ui->pushButton_2->ToggleState2));
-    Slot* s3 = new Slot(functionwrapper(ui->pushButton_3,ui->pushButton_3->ToggleState2));
-    Slot* s4 = new Slot(functionwrapper(ui->pushButton_4,ui->pushButton_4->ToggleState2));
+    Slot* s1 = new Slot(functionwrapper(ui->pushButton,ToggleButton::ToggleState2));
+    Slot* s2 = new Slot(functionwrapper(ui->pushButton_2,ToggleButton::ToggleState2));
+    Slot* s3 = new Slot(functionwrapper(ui->pushButton_3,ToggleButton::ToggleState2));
+    Slot* s4 = new Slot(functionwrapper(ui->pushButton_4,ToggleButton::ToggleState2));
 
     s1->addReceiver(b1);
     s1->addReceiver(b2);

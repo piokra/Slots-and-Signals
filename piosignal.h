@@ -23,6 +23,7 @@ public:
 protected:
     void addSlot(Slot*);
     void addEmitter();
+    void removeFromVector(Slot*);
 
 
     Signal(int);

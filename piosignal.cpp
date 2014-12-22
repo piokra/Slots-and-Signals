@@ -30,6 +30,15 @@ void Signal::addEmitter()
     m_connected++;
 }
 
+void Signal::removeFromVector(Slot* slot)
+{
+    unsigned pos;
+    for(unsigned i=0; i<m_slots.size(); i++)
+        (m_slots.at(i)==slot) ? pos=i : 0;
+    m_slots.at(pos)=m_slots.at(m_slots.size()-1);
+    m_slots.pop_back();
+}
+
 void Signal::removeEmitter(Signal*& sig)
 {
     m_connected--;

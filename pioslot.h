@@ -9,6 +9,7 @@ class Signal;
 
 class Slot
 {
+    friend class MainWindow;
     friend class Signal;
 public:
     Slot(std::function<void(int, void *)> func);
@@ -19,6 +20,7 @@ protected:
     ~Slot();
 private:
     int m_connected;
+    std::vector<Signal*> m_parents;
     std::function<void(int, void*)> m_function;
 
 };
