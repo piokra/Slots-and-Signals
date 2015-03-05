@@ -8,8 +8,7 @@ template <class T>
 std::function<void(int, void*)> functionwrapper(T *member, void(T::*funcptr)(int argc, void* argv))
 {
     std::function<void(int, void*)> ret;
-    ret = [=](int argc, void* argv)->void{ (member->*funcptr)(argc, argv);
-    };
+    ret = [=](int argc, void* argv)->void{ (member->*funcptr)(argc, argv); };
     return ret;
 }
 
